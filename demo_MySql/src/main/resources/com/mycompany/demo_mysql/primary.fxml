@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane styleClass="root" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VentasController">
+    
+    <!-- Barra Superior Global -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="10" styleClass="outer-top-bar">
+            <Button styleClass="top-tab-active" text="Overview" />
+            <Button styleClass="top-tab" text="CRM &amp; Sales" />
+            <Button styleClass="top-tab" text="ERP Inventory" />
+            <Button styleClass="top-tab" text="Telemetry" />
+            <Button styleClass="top-tab" text="Security" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label style="-fx-background-color: #E2F1F8; -fx-text-fill: #1F5975; -fx-padding: 4 10; -fx-background-radius: 12px; -fx-font-size: 11px;" text="● PROD-CLUSTER-01" />
+            <Button style="-fx-background-color: #0F202E; -fx-text-fill: white; -fx-background-radius: 50%;" text="👤" />
+        </HBox>
+    </top>
+
+    <!-- Cuerpo Principal -->
+    <center>
+        <HBox>
+            <!-- Sidebar Izquierdo Exterior -->
+            <VBox minWidth="200" spacing="8" styleClass="outer-sidebar">
+                <Button maxWidth="Infinity" styleClass="outer-sidebar-btn, outer-sidebar-btn-active" text="📊 Dashboard" />
+                <Button maxWidth="Infinity" styleClass="outer-sidebar-btn" text="👥 Accounts &amp; Leads" />
+                <Button maxWidth="Infinity" styleClass="outer-sidebar-btn" text="🏭 Supply Chain" />
+                <Button maxWidth="Infinity" styleClass="outer-sidebar-btn" text="📈 System Nodes" />
+                <Button maxWidth="Infinity" styleClass="outer-sidebar-btn" text="🛡 Access Control" />
+                <Region VBox.vgrow="ALWAYS" />
+                <VBox spacing="4" style="-fx-font-size: 11px; -fx-text-fill: #64748B; -fx-font-weight: bold;">
+                    <Label text="LATENCY        12ms" />
+                    <Label text="STORAGE        64%" />
+                </VBox>
+            </VBox>
+
+            <!-- Marco Flotante del Módulo -->
+            <BorderPane style="-fx-background-color: #F4F6F9; -fx-border-color: #CBD5E1; -fx-border-width: 1px;" HBox.hgrow="ALWAYS">
+                <!-- Barra de Título del Módulo -->
+                <top>
+                    <HBox alignment="CENTER_LEFT" spacing="10" styleClass="window-title-bar">
+                        <Label style="-fx-text-fill: #2B82B0; -fx-font-weight: bold;" text="☑" />
+                        <Label styleClass="window-title-text" text="SOPTEC-IT - Sistema de Gestión Empresarial v2.4" />
+                        <Label styleClass="window-tag" text="MOD-SALES_ENV" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <HBox spacing="10" style="-fx-text-fill: #FFFFFF;">
+                            <Label text="—" />
+                            <Label text="□" />
+                            <Label text="✕" />
+                        </HBox>
+                    </HBox>
+                </top>
+
+                <!-- Sidebar Interno y Lienzo -->
+                <center>
+                    <HBox>
+                        <!-- Sidebar Azul Marino -->
+                        <VBox spacing="6" styleClass="sidebar">
+                            <VBox spacing="2" styleClass="sidebar-brand-box">
+                                <Label styleClass="sidebar-title" text="SOPTEC-IT" />
+                                <Label styleClass="sidebar-subtitle" text="CORE NET OPS" />
+                            </VBox>
+                            <Button maxWidth="Infinity" styleClass="sidebar-button, sidebar-button-active" text="☎ VENTAS" />
+                            <Button maxWidth="Infinity" styleClass="sidebar-button" text="➾ LEVANTAMIENTOS" />
+                            <Button maxWidth="Infinity" styleClass="sidebar-button" text="⛯ ADMINISTRACION" />
+                            <Button maxWidth="Infinity" styleClass="sidebar-button" text="📦 COMPRAS-ALMACEN" />
+                            <Button maxWidth="Infinity" styleClass="sidebar-button" text="🔧 INSTALACIONES" />
+                        </VBox>
+
+                        <!-- Área de Contenido con Scroll -->
+                        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;" HBox.hgrow="ALWAYS">
+                            <VBox spacing="15">
+                                <padding>
+                                    <Insets bottom="15" left="15" right="15" top="15" />
+                                </padding>
+
+                                <!-- Header de Submódulo -->
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+                                    <VBox spacing="2">
+                                        <HBox alignment="BASELINE_LEFT" spacing="8">
+                                            <Label styleClass="module-header-title" text="VENTAS" />
+                                            <Label styleClass="window-tag" text="SYS-CR01" />
+                                        </HBox>
+                                        <Label styleClass="module-header-subtitle" text="Módulo Comercial &amp; Gestión de Citas Técnicas" />
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label styleClass="badge-info" text="REGISTROS: 3 ACTIVOS" />
+                                    <Button styleClass="btn-dark" text="🔄 Actualizar Grid" />
+                                </HBox>
+
+                                <!-- Tarjeta: Tabla Operativa -->
+                                <VBox styleClass="card-container">
+                                    <HBox alignment="CENTER_LEFT" styleClass="card-header-bar">
+                                        <Label styleClass="card-header-title" text="≡  REJILLA DE CONTROL OPERATIVO - CITAS Y LEVANTAMIENTOS" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label styleClass="card-header-subtext" text="VISTA: TABULAR_NATIVA" />
+                                    </HBox>
+                                    <TableView fx:id="tablaProyectos" columnResizePolicy="CONSTRAINED_RESIZE_POLICY" prefHeight="210">
+                                        <columns>
+                                            <TableColumn fx:id="colId" text="Id_Proyecto" />
+                                            <TableColumn fx:id="colCliente" text="Cliente" />
+                                            <TableColumn fx:id="colFecha" text="Fecha Cita" />
+                                            <TableColumn fx:id="colArea" text="Área Actual" />
+                                            <TableColumn fx:id="colEstado" text="Estado" />
+                                        </columns>
+                                    </TableView>
+                                </VBox>
+
+                                <!-- Tarjeta: Formulario de Registro -->
+                                <VBox spacing="12" styleClass="card-container">
+                                    <padding>
+                                        <Insets bottom="15" left="15" right="15" top="15" />
+                                    </padding>
+                                    <HBox alignment="CENTER_LEFT">
+                                        <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #0F202E;" text="📅 Agendar Cita" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label style="-fx-font-size: 10px; -fx-text-fill: #64748B; -fx-font-weight: bold;" text="* CAMPOS REQUERIDOS" />
+                                    </HBox>
+
+                                    <GridPane hgap="15" vgap="10">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="50" />
+                                            <ColumnConstraints percentWidth="50" />
+                                        </columnConstraints>
+
+                                        <!-- Fila 0 -->
+                                        <VBox spacing="3" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                            <Label styleClass="form-label" text="NOMBRE DEL CONTACTO *" />
+                                            <TextField promptText="👤 Nombre del contacto..." />
+                                        </VBox>
+                                        <VBox spacing="3" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                            <Label styleClass="form-label" text="FECHA *" />
+                                            <TextField promptText="📅 mm/dd/yyyy" />
+                                        </VBox>
+
+                                        <!-- Fila 1 -->
+                                        <VBox spacing="3" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                            <Label styleClass="form-label" text="EMPRESA *" />
+                                            <TextField promptText="🏢 Razón social o empresa..." />
+                                        </VBox>
+                                        <VBox spacing="3" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                            <Label styleClass="form-label" text="HORA *" />
+                                            <TextField promptText="🕒 --:-- --" />
+                                        </VBox>
+
+                                        <!-- Fila 2 -->
+                                        <VBox spacing="3" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                            <Label styleClass="form-label" text="CORREO-NÚMERO *" />
+                                            <TextField promptText="@ ejemplo@empresa.com / +52 ..." />
+                                        </VBox>
+                                        <VBox spacing="3" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                            <Label styleClass="form-label" text="DIRECCIÓN *" />
+                                            <TextField promptText="📍 Dirección o ubicación del levantamiento..." />
+                                        </VBox>
+                                    </GridPane>
+                                </VBox>
+                            </VBox>
+                        </ScrollPane>
+                    </HBox>
+                </center>
+
+                <!-- Footer / Status Bar -->
+                <bottom>
+                    <HBox spacing="20" styleClass="bottom-status-bar">
+                        <Label text="STATUS: READY" />
+                        <Label text="ENC: TLS 1.3 / AES-GCM-256" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label text="SERVER: us-east-core.soptec.internal" />
+                        <Label text="UID: SYSADM-4091" />
+                    </HBox>
+                </bottom>
+            </BorderPane>
+        </HBox>
+    </center>
+</BorderPane>
